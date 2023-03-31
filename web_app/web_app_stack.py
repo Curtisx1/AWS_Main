@@ -1,3 +1,6 @@
+import aws_cdk as cdk
+import aws_cdk.aws_s3 as s3
+
 from aws_cdk import (
     # Duration,
     Stack,
@@ -5,11 +8,10 @@ from aws_cdk import (
 )
 from constructs import Construct
 
-class WebAppStack(Stack):
+class WebAppStack(cdk.Stack):
 
-    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
+    def __init__(self, scope: cdk.App, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
-
         # The code that defines your stack goes here
 
         # example resource
@@ -17,3 +19,4 @@ class WebAppStack(Stack):
         #     self, "WebAppQueue",
         #     visibility_timeout=Duration.seconds(300),
         # )
+        bucket = s3.Bucket(self, "MyFirstBucket", versioned=True)
